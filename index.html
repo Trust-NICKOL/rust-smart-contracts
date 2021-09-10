@@ -8,16 +8,119 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
+
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Rust Programming Langauge
+						<div style="display: flex; align-items: center; flex-wrap: nowrap; flex-direction: row; justify-content: space-evenly;">
+							<img src="assets/Rust_programming_language_black_logo.svg" height="300px" style="filter: invert(1);">
+							<div style="height: 300px; border-left: solid 5px white;"></div>
+							<img src="assets/rustacean-flat-gesture.png" height="300px">	
+						</div>
+						---
+						## Rust philosophy
+						<div style="display: block;">
+							<div class="performance-chart visible" data-fragment-index="0">
+							<span class="performance-chart__axe-title fragment" style="position: absolute;top: 200px;left: -245px;transform: rotate(-90deg);" data-fragment-index="0">Control / Performance</span>
+							<span class="performance-chart__axe-title fragment" style="position: absolute;bottom: -55px;right: 360px;" data-fragment-index="0">Safety</span>
+	
+							<span class="performance-chart__lang fragment" data-fragment-index="1" style="
+									position: absolute;
+									left: 20px;
+									top: 10px;
+							">C</span>
+							<span class="performance-chart__lang fragment" data-fragment-index="1" style="
+									position: absolute;
+									left: 71px;
+									top: 90px;">C++</span>
+							<span class="performance-chart__lang fragment" data-fragment-index="3" style="
+									position: absolute;
+									left: 250px;
+									top: 190px;">Go</span>
+							<span class="performance-chart__lang fragment" data-fragment-index="3" style="
+									position: absolute;
+									left: 350px;
+									top: 230px;">Java</span>
+							<span class="performance-chart__lang fragment" data-fragment-index="2" style="
+									position: absolute;
+									right: 20px;
+									bottom: 20px
+							">Haskell</span>
+							<span class="performance-chart__lang fragment" style="
+							position: absolute;
+							right: 20px;
+							top: 40px;">Rust</span>
+						</div>
+						---
+						## Sprit of Rust
+						* Modern C/C++ replacement <!-- .element: class="fragment" -->
+						* Memory Safety without Garbage Collection <!-- .element: class="fragment" -->
+						* No runtime needed <!-- .element: class="fragment" -->
+						* Functional Programming influence <!-- .element: class="fragment" -->
+						* Zero abstractions through rich macro system <!-- .element: class="fragment" -->
+						---
+						## Ownership model
+						---
+						## Owner
+						* Each value in Rust has a variable that’s called its *owner*.
+						* There can only be one *owner* at a time.
+						* When the *owner* goes out of scope, the value will be *dropped*.
+						---
+						## References
+						* At any given time, you can have either one mutable *reference* or any number of immutable *references*.
+						* References must always be valid.
+						* Rust catches these errors at *compile time*
+						---
+						## Excellent tool support
+						* rustup
+						  * channel *(stable|beta|nightly)*
+						  * targets *(i686-pc-windows-msvc|wasm32)*
+						  * components *(rust-src)*
+						* rustc
+						* cargo
+						  * Package Management
+						  * CLI for compiler
+						---
+						## Dimension
+						<div style="display: flex; align-items: center; flex-wrap: nowrap; flex-direction: row; justify-content: space-between;">
+							<div>
+								<small>Performance</small>
+							</div>
+							<div>
+								<small>Safety</small>
+							</div>
+						</div>
+						<div style="display: flex; align-items: center; flex-wrap: nowrap; flex-direction: row; justify-content: space-between;">
+							<div style="width: 0;height: 0;border-top: 25px solid transparent;border-right: 50px solid #A61F5E;border-bottom: 25px solid transparent;">
+							</div>
+							<div style="margin:auto; width: 100%; height: 20px;background-image: linear-gradient(to right, #A61F5E, #0A5DA6);">
+							</div>
+							<div style="width: 0;height: 0;border-top: 25px solid transparent;border-left: 50px solid #0A5DA6;border-bottom: 25px solid transparent;">
+							</div>
+						</div>
+							<div style="display: flex; align-items: center; flex-wrap: nowrap; flex-direction: row; justify-content: space-between;">
+							<div>
+								<pre>C, C++</pre>
+							</div>
+							<div>
+								<pre>Java</pre>
+							</div>
+							<div>
+								<pre>Python</pre>
+							</div>
+							</div>
+						</div>
+					</textarea>
+				</section>
 			</div>
 		</div>
 
