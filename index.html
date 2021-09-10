@@ -58,27 +58,39 @@
 							<span class="performance-chart__lang fragment" style="
 							position: absolute;
 							right: 20px;
-							top: 40px;">Rust</span>
+							top: 40px;"><b>Rust</b></span>
 						</div>
 						---
 						## Sprit of Rust
 						* Modern C/C++ replacement <!-- .element: class="fragment" -->
+						* Pick three <!-- .element: class="fragment" -->
+						  * Safe, Concurrent, Fast <!-- .element: class="fragment" -->
 						* Memory Safety without Garbage Collection <!-- .element: class="fragment" -->
 						* No runtime needed <!-- .element: class="fragment" -->
+						* Zero-cost abstractions <!-- .element: class="fragment" -->
 						* Functional Programming influence <!-- .element: class="fragment" -->
-						* Zero abstractions through rich macro system <!-- .element: class="fragment" -->
 						---
-						## Ownership model
+						## Ownership model 
+						(Resource Acquisition Is Initialization) <!-- .element: style="color:gray" -->
 						---
 						## Owner
-						* Each value in Rust has a variable that’s called its *owner*.
-						* There can only be one *owner* at a time.
-						* When the *owner* goes out of scope, the value will be *dropped*.
+						<ul>
+							<li class="fragment">Each value in Rust has a variable that’s called its <em>owner</em>.</li>
+							<li class="fragment">There can only be one <em>owner</em> at a time.</li>
+							<li class="fragment">When the <em>owner</em> goes out of scope, the value will be dropped.</li>
+						</ul>
 						---
 						## References
-						* At any given time, you can have either one mutable *reference* or any number of immutable *references*.
-						* References must always be valid.
-						* Rust catches these errors at *compile time*
+						<ul>
+							<li class="fragment">At any given time, you can have either 
+								<ul>
+									<li class="fragment"><b>one mutable reference</b> or</li>
+									<li class="fragment"><b>any number of immutable references</b>.</li>
+								</ul>
+							</li>
+							<li class="fragment">References must always be valid. </li>
+							<li class="fragment">Rust catches these errors at <b>compile time</b>.</li>
+						</ul>
 						---
 						## Excellent tool support
 						* rustup
