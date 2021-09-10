@@ -2,7 +2,7 @@
 
 Presentation about Rust.
 
-It covers the motivation of Rust and the major parts which make the programming language so unique. 
+It covers the motivation of Rust and the key concepts that make this programming language so unique. 
 
 ## Depedencies
 
