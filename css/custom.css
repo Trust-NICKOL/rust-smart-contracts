@@ -10,3 +10,7 @@
 .highlight {
   color: #f74b00;
 }
+
+.reveal .subtitle {
+  color:hsl(0, 0%, 66%);
+}
