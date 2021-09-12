@@ -36,12 +36,16 @@
 						  * high-level, 
 						  * general-purpose 
 						* Modern C/C++ replacement <!-- .element: class="fragment" -->
+						  * no more dangling pointers <!-- .element: class="fragment" -->
+						  * no more iterator invalidation <!-- .element: class="fragment" -->
+						  * thread safety <!-- .element: class="fragment" -->
 						---
 						## History of Rust
 						* *2006* - personal project of Graydon Hoare
 						* *2009* - Mozilla sponsoring development
 						* *2011* - rust compiler compiles itself
 						* *2015* - rust 1.0
+						* *2018* - RustBelt Securing the Foundations of Rust
 						* *2020* - Mozilla laid off most of Rust team
 						* *2021* - Rust Foundation (AWS, Huawei, Google, Microsoft, Mozilla)
 						---
@@ -267,40 +271,25 @@
 						```
 						<!-- .element: data-id="code-animation" -->
 						---
-						<!-- .element: data-auto-animate -->
-						## fizzbuzz
+						### Algebraic data type
 						```rust []
-						fn main() {
+						enum Option<T> {
+							Some(T),
+							None
 						}
-						```
-						<!-- .element: data-id="code-animation" -->
-						---
-						<!-- .element: data-auto-animate -->
-						## fizzbuzz
-						```rust []
-						fn main() {
-							for i in 1..=100 {
-							}
-						}
-						```
-						<!-- .element: data-id="code-animation" -->
-						---
-						<!-- .element: data-auto-animate -->
-						## fizzbuzz
-						```rust []
-						fn main() {
-							for i in 1..=100 {
-								println!("{}", fizzbuzz(i));
-							}
+						
+						fn maybe_sqrt(x: f64) -> Option<f64> {
+							if x >= 0.0 { Some(x.sqrt()) } else { None }
 						}
 
-						fn fizzbuzz(number: u32) -> String {
-							unimplemented!()
+						fn main() {
+							match maybe_sqrt(9.0) {
+								Some(x) => println!("{}", x),
+								None => panic!(),
+							}
 						}
 						```
-						<!-- .element: data-id="code-animation" -->
 						---
-						<!-- .element: data-auto-animate -->
 						## fizzbuzz
 						```rust []
 						fn main() {
@@ -318,18 +307,48 @@
 							}
 						}
 						```
-						<!-- .element: data-id="code-animation" -->
+						---
+						## Thread safety
+						```rust []
+						fn main() {
+							let message = "Hello thread".to_string();
+							std::thread::spawn(move || {
+									println!("{}", message);
+							}).join().unwrap();
+							// not allowed, since value has been moved
+							// eprintln!("{}", message);
+						}
+						```
 						---
 						## Excellent tool support
-						* rustup
-						  * channel *(stable|beta|nightly)*
-						  * targets *(i686-pc-windows-msvc|wasm32)*
-						  * components *(rust-src)*
-						* rustc
-						* cargo
-						  * Package Management
-						  * CLI for compiler
+						<ul>
+							<li class="fragment">
+								<em>rustup</em>
+								<ul>
+									<li>channel <em>(stable|beta|nightly)</em></li>
+									<li>targets <em>(i686-pc-windows-msvc|wasm32)</em></li>
+									<li>components <em>(rust-src)</em></li>
+								</ul>
+							</li>
+							<li class="fragment">
+								<em>rustc</em>
+							</li>
+							<li class="fragment">
+								<em>cargo</em>
+								<ul>
+									<li>Package Management</li>
+									<li>CLI for compiler</li>
+								</ul>
+							</li>
+						</ul>
 						---
+						### Be prepared
+						* steep learning curve <!-- .element: class="fragment" -->
+						* read compiler errors <!-- .element: class="fragment" -->
+						* stop blaming the compiler <!-- .element: class="fragment" -->
+						* no more runtime exceptions <!-- .element: class="fragment" -->
+						---
+						## Thank you! <!-- .element: class="r-fit-text" -->
 					</textarea>
 				</section>
 			</div>
@@ -345,7 +364,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				slideNumber: true,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
