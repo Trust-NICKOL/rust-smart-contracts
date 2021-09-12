@@ -72,15 +72,97 @@
 						* Zero-cost abstractions <!-- .element: class="fragment" -->
 						* Functional Programming influence <!-- .element: class="fragment" -->
 						---
-						## Ownership model 
-						(Resource Acquisition Is Initialization) <!-- .element: style="color:gray" -->
-						---
-						## Owner
+						## Ownership model
 						<ul>
 							<li class="fragment">Each value in Rust has a variable that’s called its <em>owner</em>.</li>
 							<li class="fragment">There can only be one <em>owner</em> at a time.</li>
 							<li class="fragment">When the <em>owner</em> goes out of scope, the value will be dropped.</li>
 						</ul>
+						Note:
+						* Resource Acquisition Is Initialization (RAII) taken one step further
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						fn main() {
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						fn main() {
+							let first_owner = "Hello Owner".to_string();
+							println!("{}", first_owner);
+							// string is dropped
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						fn main() {
+							let first_owner = "Hello Owner".to_string();
+							// move ownership
+							let second_owner = first_owner;
+							println!("{}", second_owner);
+							// string is dropped
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						fn main() {
+							let first_owner = "Hello Owner".to_string();
+							// move ownership
+							let second_owner = first_owner;
+							println!("{}", second_owner);
+							// usage of moved value
+							println!("{}", first_owner);
+							// string is dropped
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						fn main() {
+							let first_owner = "Hello Owner".to_string();
+							    ----------- move occurs ...
+							// move ownership
+							let second_owner = first_owner;
+							                   ----------- value moved here
+							println!("{}", second_owner);
+							// usage of moved value
+							println!("{}", first_owner);
+							               ^^^^^^^^^^^ value borrowed here after move
+							// string is dropped
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						## Owner
+						```rust []
+						error[E0382]: borrow of moved value: `first_owner`
+						--> src/main.rs:4:20
+							let first_owner = "Hello Owner".to_string();
+							    ----------- move occurs ...
+							...
+							let second_owner = first_owner;
+							                   ----------- value moved here
+							...
+							println!("{}", first_owner);
+							               ^^^^^^^^^^^ value borrowed here after move
+						
+						error: aborting due to previous error; 1 warning emitted
+						```
+						<!-- .element: data-id="code-animation" -->
 						---
 						## References
 						<ul>
@@ -93,6 +175,80 @@
 							<li class="fragment">References must always be valid. </li>
 							<li class="fragment">Rust catches these errors at <b>compile time</b>.</li>
 						</ul>
+						---
+						<!-- .element: data-auto-animate -->
+						### [im]mutable reference
+						```rust [2-5|2,6-9]
+						fn main() {
+							let mut owner: String = "Hello String".to_string();
+							// immutable reference
+							let borrow: &String = &owner;
+							println!("owner: {}, borrow: {}", owner, borrow);
+							// mutable reference
+							let mut_borrow: &mut String = &mut owner;
+							*mut_borrow += "!!";
+							println!("modified owner: {}", owner);
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						### [im]mutable reference
+						```rust []
+						fn main() {
+							let mut owner: String = "Hello String".to_string();
+							// immutable reference
+							let borrow: &String = &owner;
+							println!("owner: {}, borrow: {}", owner, borrow);
+							// mutable reference
+							let mut_borrow: &mut String = &mut owner;
+							*mut_borrow += "!!";
+							println!("modified owner: {}", owner);
+							// usage of both
+							println!("ref: {}, mut_ref: {}", borrow, mut_borrow);
+						}
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						### [im]mutable reference
+						```rust []
+							let mut owner: String = "Hello String".to_string();
+							// immutable reference
+							let borrow: &String = &owner;
+							                      ------ immutable borrow occurs here
+							println!("owner: {}, borrow: {}", owner, borrow);
+							// mutable reference
+							let mut_borrow: &mut String = &mut owner;
+							                              ^^^^^^^^^^ mutable borrow 
+							                                         occurs here
+							*mut_borrow += "!!";
+							println!("modified owner: {}", owner);
+							// usage of both
+							println!("ref: {}, mut_ref: {}", borrow, mut_borrow);
+							                                 ------ immutable borrow 
+							                                        later used here
+						```
+						<!-- .element: data-id="code-animation" -->
+						---
+						<!-- .element: data-auto-animate -->
+						### [im]mutable reference
+						```rust []
+						error[E0502]: cannot borrow `owner` as mutable because it 
+						              is also borrowed as immutable
+							--> src/main.rs:7:35
+							let borrow: &String = &owner;
+							                      ------ immutable borrow occurs here
+							...
+							let mut_borrow: &mut String = &mut owner;
+							                              ^^^^^^^^^^ mutable borrow 
+							                                         occurs here
+							...
+							println!("ref: {}, mut_ref: {}", borrow, mut_borrow);
+							                                 ------ immutable borrow 
+							                                        later used here
+						```
+						<!-- .element: data-id="code-animation" -->
 						---
 						<!-- .element: data-auto-animate -->
 						## fizzbuzz
@@ -144,65 +300,6 @@
 								(_, _) => number.to_string(),
 							}
 						}
-						```
-						<!-- .element: data-id="code-animation" -->
-						---
-						## borrow
-						```rust [2-4|2,5-7]
-						fn main() {
-							let mut number: i32 = 41;
-							let borrow: &i32 = &number;
-							println!("Number: {}, borrow: {}", number, borrow);
-							let mut_borrow: &mut i32 = &mut number;
-							*mut_borrow += 1;
-							println!("Answer: {}", number);
-						}
-						```
-						---
-						<!-- .element: data-auto-animate -->
-						### borrow checker
-						```rust [2,3,6|4,5|1-7]
-						fn main() {
-							let mut number = 41;
-							let borrow = &number;
-							let mut_borrow = &mut number;
-							*mut_borrow += 1;
-							println!("Borrow: {}", borrow);
-						}
-						```
-						<!-- .element: data-id="code-animation" -->
-						---
-						<!-- .element: data-auto-animate -->
-						### borrow checker
-						```rust []
-						fn main() {
-							let mut number = 41;
-							let borrow = &number;
-							             ------- immutable borrow occurs here
-							let mut_borrow = &mut number;
-							                 ^^^^^^^^^^^ mutable borrow occurs here
-							*mut_borrow += 1;
-							println!("Borrow: {}", borrow);
-							                       ------ immutable borrow later used here
-						}
-						```
-						<!-- .element: data-id="code-animation" -->
-						---
-						<!-- .element: data-auto-animate -->
-						### borrow checker
-						```rust []
-						error[E0502]: cannot borrow `number` as mutable because it is also borrowed as immutable
-						--> 3.rs:4:22
-						
-						    let borrow = &number;
-						                 ------- immutable borrow occurs here
-						    let mut_borrow = &mut number;
-						                     ^^^^^^^^^^^ mutable borrow occurs here
-						    *mut_borrow += 1;
-						    println!("Borrow: {}", borrow);
-						                           ------ immutable borrow later used here
-
-						error: aborting due to previous error
 						```
 						<!-- .element: data-id="code-animation" -->
 						---
