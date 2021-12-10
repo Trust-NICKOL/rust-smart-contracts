@@ -1,0 +1,130 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@font-face {
+  font-family: "Loos Wide";
+  src: url("./theme/fonts/loos-wide/Loos Latin, Cyrillic Wide-Light-Web.woff2") format("woff2"), url("/fonts/Loos Latin, Cyrillic Wide-Light-Web.woff") format("woff");
+  font-weight: normal; 
+  font-style: normal; 
+  font-display: swap;
+}
+@font-face {
+  font-family: "Loos Wide";
+  src: url("./theme/fonts/loos-wide/Loos Latin, Cyrillic Wide-Bold-Web.woff2") format("woff2"), url("/fonts/Loos Latin, Cyrillic Wide-Bold-Web.woff") format("woff");
+  font-weight: bold; 
+  font-style: normal;
+  font-display: swap 
+}
+
+$neonBlue: #2EAFFF;
+$neonPink: #CE48FF;
+$chambray: #394483;
+$scampi: #6570AC;
+$moonRaker: #C2C6F4;
+$stratos-dark: #000A39;
+$stratos-light: #000D54;
+$white: #fff;
+
+$backgroundColor: $stratos-dark;
+$mainColor: $white;
+$mainFont: 'Loos Wide', sans-serif;
+
+$linkColor: $neonBlue;
+$linkColorHover: lighten( $linkColor, 20% );
+
+$headingColor: $white;
+$headingFont: 'Loos Wide', sans-serif;
+$headingFontWeight: bold;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.03em;
+$headingTextTransform: none;
+
+$selectionBackgroundColor: $moonRaker;
+
+$codeFont: "Space Mono";
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: $stratos-light;
+  color: $moonRaker;
+}
+
+.hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: $neonBlue;
+}
+
+.hljs-code {
+  color: #66d9ef;
+}
+
+.hljs-class .hljs-title {
+  color: $white;
+}
+
+.hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: $neonPink;
+}
+
+.hljs-string {
+  color: $moonRaker;
+}
+
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: $neonPink;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: $scampi;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-selector-id {
+  font-weight: bold;
+}
+
+.code-wrapper {
+  font-variant-ligatures: no-common-ligatures;
+}
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

@@ -1,6 +1,6 @@
 .reveal .performance-chart {
-  border-left: 5px solid hsl(0, 0%, 33%);
-  border-bottom: 5px solid hsl(0, 0%, 33%);
+  border-left: 5px solid #C2C6F4;
+  border-bottom: 5px solid #C2C6F4;
   position: relative;
   height: 450px;
   width: 800px;
@@ -8,9 +8,9 @@
 }
 
 .highlight {
-  color: #f74b00;
+  color: #CE48FF
 }
 
 .reveal .subtitle {
-  color:hsl(0, 0%, 66%);
+  color: #C2C6F4;
 }
