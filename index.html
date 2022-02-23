@@ -9,28 +9,28 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/trust-nickol.css">
-		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="/dist/tailwind.css" >
 	</head>
 
 	<body>
-		<div id="logo" style="
-				position: absolute;
-				top: 0px;
-				right: 0px;
-				width: 10%;">
-				<img src="assets/trust-nickol-logo.svg" ></div>
+		<div class="absolute top-0 right-0" id="logo" style="width: 10%;">
+			<img src="assets/trust-nickol-logo.svg" >
+		</div>
 
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown>
 					<textarea data-template>
-						## Rust Programming Language
-						<div style="display: flex; align-items: center; flex-wrap: nowrap; flex-direction: row; justify-content: space-evenly;">
-							<img src="assets/Rust_programming_language_black_logo.svg" height="300px" style="filter: invert(1);">
-							<div style="height: 300px; border-left: solid 5px white;"></div>
-							<img src="assets/rustacean-flat-gesture.png" height="300px">	
+						<div class="flex flex-col">
+							<img class="h-24" src="assets/solana.svg">
+							<div class="pt-12 flex gap-16 justify-center flex-shrink-0">
+								<img class="h-48 invert" src="assets/Rust_programming_language_black_logo.svg">
+								<div class="min-h-full border-solid border-l-4 border-white"></div>
+								<img class="h-48" src="assets/rustacean-flat-gesture.png">
+							</div>
 						</div>
-						<div class="subtitle" style="display: flex; flex-direction: row-reverse; font-size: 0.75em;">
+						
+						<div class="subtitle flex flex-row-reverse text-3xl">
 							by Alexander Nickol
 						</div>
 						---
@@ -54,39 +54,34 @@
 						* *2021* - Rust Foundation (AWS, Huawei, Google, Microsoft, Mozilla)
 						---
 						## Rust philosophy
-						<div style="display: block;">
-							<div class="performance-chart visible" data-fragment-index="0">
-							<span class="performance-chart__axe-title fragment" style="position: absolute;top: 200px;left: -245px;transform: rotate(-90deg);" data-fragment-index="0">Control / Performance</span>
-							<span class="performance-chart__axe-title fragment" style="position: absolute;bottom: -55px;right: 360px;" data-fragment-index="0">Safety</span>
+
+						<div class="block">
+							<div class="performance-chart relative border-solid border-l-4 border-moonRaker m-auto" data-fragment-index="0" style="height: 450px;width: 800px;">
+							<span class="performance-chart__axe-title fragment absolute" style="top: 200px;left: -245px;transform: rotate(-90deg);" data-fragment-index="0">Control / Performance</span>
+							<span class="performance-chart__axe-title fragment absolute" style="bottom: -55px;right: 360px;" data-fragment-index="0">Safety</span>
 	
-							<div style="position: absolute; top: -45px; left: -28px; width: 0;height: 0; border-bottom: 50px solid #C2C6F4; border-left: 25px solid transparent; border-right: 25px solid transparent;"></div>
-							<div style="position: absolute; bottom: -28px; right: -45px; width: 0;height: 0; border-left: 50px solid #C2C6F4; border-top: 25px solid transparent; border-bottom: 25px solid transparent;"></div>
-							<span class="performance-chart__lang fragment" data-fragment-index="1" style="
-									position: absolute;
+							<div class="absolute" style="top: -45px; left: -28px; width: 0;height: 0; border-bottom: 50px solid #C2C6F4; border-left: 25px solid transparent; border-right: 25px solid transparent;"></div>
+							<div class="absolute" style="bottom: -28px; right: -45px; width: 0;height: 0; border-left: 50px solid #C2C6F4; border-top: 25px solid transparent; border-bottom: 25px solid transparent;"></div>
+							<span class="absolute performance-chart__lang fragment" data-fragment-index="1" style="
 									left: 20px;
 									top: 10px;
 							">C</span>
-							<span class="performance-chart__lang fragment" data-fragment-index="1" style="
-									position: absolute;
+							<span class="absolute performance-chart__lang fragment" data-fragment-index="1" style="
 									left: 71px;
 									top: 90px;">C++</span>
-							<span class="performance-chart__lang fragment" data-fragment-index="3" style="
-									position: absolute;
+							<span class="absolute performance-chart__lang fragment" data-fragment-index="3" style="
 									left: 250px;
 									top: 190px;">Go</span>
-							<span class="performance-chart__lang fragment" data-fragment-index="3" style="
-									position: absolute;
+							<span class="absolute performance-chart__lang fragment" data-fragment-index="3" style="
 									left: 350px;
 									top: 230px;">Java</span>
-							<span class="performance-chart__lang fragment" data-fragment-index="2" style="
-									position: absolute;
+							<span class="absolute performance-chart__lang fragment" data-fragment-index="2" style="
 									right: 20px;
 									bottom: 20px
 							">Haskell</span>
-							<span class="performance-chart__lang fragment" style="
-							position: absolute;
+							<span class="absolute performance-chart__lang fragment" style="
 							right: 20px;
-							top: 40px;"><b class="highlight">Rust</b></span>
+							top: 40px;"><b class="text-neonPink">Rust</b></span>
 						</div>
 						---
 						## Spirit of Rust
