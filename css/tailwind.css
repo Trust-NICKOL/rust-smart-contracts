@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.reveal .subtitle {
+  color: #C2C6F4;
+}
